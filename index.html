@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SafeStack Control Dossier — Architectural deep dive into VPN systems, encryption layers, infrastructure trust and identity boundaries.">
+<meta name="description" content="SafeStack Control Dossier — Architectural deep dive into VPN systems, encryption layers, infrastructure trust, Zero Trust identity, and canonical boundaries.">
 <meta name="robots" content="index, follow">
 <title>SafeStack | Control Dossier</title>
 
@@ -15,6 +15,7 @@
     --muted:#7c8796;
     --accent:#00d4ff;
     --line:#1c2430;
+    --card-bg:#121822;
 }
 
 *{box-sizing:border-box}
@@ -29,7 +30,7 @@ body{
 
 .layout{
     display:grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 240px 1fr;
     min-height:100vh;
 }
 
@@ -56,10 +57,26 @@ nav a{
     text-decoration:none;
     font-size:0.8rem;
     letter-spacing:1px;
+    transition:color 0.2s ease;
 }
 
 nav a:hover{
     color:var(--accent);
+}
+
+.meta-box{
+    margin-top:60px;
+    padding:14px;
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-size:0.75rem;
+    color:var(--muted);
+}
+.meta-box span{
+    display:block;
+    color:var(--accent);
+    margin-bottom:4px;
 }
 
 /* Content */
@@ -91,6 +108,26 @@ p{
 code{
     background:#121722;
     padding:2px 6px;
+    color:#a5b4fc;
+    font-size:0.9em;
+}
+
+.canon-card{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:20px;
+    border-radius:4px;
+    margin-top:20px;
+}
+.canon-card h4{
+    margin:0 0 10px 0;
+    color:var(--text);
+    font-size:0.95rem;
+}
+.canon-card p{
+    margin:6px 0;
+    font-size:0.85rem;
 }
 </style>
 </head>
@@ -106,7 +143,16 @@ code{
 <a href="#infrastructure">Infrastructure</a>
 <a href="#application">Application</a>
 <a href="#identity">Identity</a>
+<a href="#canon">Governance</a>
 <a href="#conclusion">Conclusion</a>
+
+<div class="meta-box">
+<span>PROJECT IDENTITY</span>
+ID: project-006<br>
+Root Canon: v1.0.0<br>
+Tech Canon: v1.0.0<br>
+Status: ACTIVE
+</div>
 </nav>
 
 <main>
@@ -224,21 +270,43 @@ Logging into services binds session identity to user profile.
 <p>
 Interaction patterns generate behavioral signatures independent of IP.
 </p>
+
+<h3>Zero Trust Engine</h3>
+<p>
+Local-first posture validation gates access: default deny, signed policy bundles, and local decision trails.
+</p>
+</section>
+
+<section id="canon">
+<h2>Canonical Governance</h2>
+
+<p>
+This control architecture operates within the formal SafeStack Trust Hierarchy:
+</p>
+
+<div class="canon-card">
+<h4>Root Canon Anchor</h4>
+<p><strong>Root Canon Repository:</strong> <code>kibernetinio-saugumo-sprendimai/safestack-canon</code> (v1.0.0)</p>
+<p><strong>Technical Canon:</strong> <code>kibernetinio-saugumo-sprendimai/safestack-technical-canon</code> (v1.0.0)</p>
+<p><strong>Project Public Key ID:</strong> <code>project-006</code></p>
+<p><strong>Public Key Fingerprint:</strong> <code>SHA256:e91f92abe2e4ca9d4b65dd6c49e8230ff2d7266c0a6990d91e104628a89b6766</code></p>
+<p><strong>Validation Registry:</strong> <code>kibernetinio-saugumo-sprendimai/safestack-validation-registry</code></p>
+</div>
 </section>
 
 <section id="conclusion">
 <h2>Conclusion</h2>
 
 <p>
-Encryption protects payload.  
-Routing obscures destination.  
-Infrastructure defines trust.  
-Applications leak entropy.  
+Encryption protects payload.<br>
+Routing obscures destination.<br>
+Infrastructure defines trust.<br>
+Applications leak entropy.<br>
 Identity persists above transport.
 </p>
 
 <p>
-Security is layered discipline.
+Security is layered discipline. Trust is established through verification, not authority.
 </p>
 </section>
 
